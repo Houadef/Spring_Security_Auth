@@ -98,6 +98,27 @@
 	
   	<!-- SPRING Dependencies -->  	  	
   	
+  		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
+		<dependency>
+		    <groupId>org.springframework.data</groupId>
+		    <artifactId>spring-data-jpa</artifactId>
+		    <version>2.7.0</version>
+		</dependency>
+  	
+  	<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-commons -->
+		<dependency>
+		    <groupId>org.springframework.data</groupId>
+		    <artifactId>spring-data-commons</artifactId>
+		    <version>2.7.0</version>
+		</dependency>
+  	
+  		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context</artifactId>
+		    <version>5.3.20</version>
+		</dependency>
+  		
 	  	<!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
 		<dependency>
 		    <groupId>org.springframework</groupId>

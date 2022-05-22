@@ -13,7 +13,7 @@ public interface DataTechCoreBaseParameters {
 	// Application default Local
 	final Locale DEFAULT_LOCAL = new Locale("en", "EN");
 	
-	final String APPLICATION_CONFIG_FILE = "app.db.cfg.properties";
+	final String APPLICATION_CONFIG_FILE = "application.properties";
 	enum dataBaseType{postgresql,mysql,sqlserver,oracle,sqlite};
 	
 	// Application Default Ecnoding
@@ -26,5 +26,6 @@ public interface DataTechCoreBaseParameters {
 	final String MESSAGE_SOURCE = "language/lang";
 
 	Locale default_local = Locale.getDefault();
+
 	
 }

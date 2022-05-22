@@ -49,10 +49,11 @@ public class DataTechCoreLoadDataSourceProperties implements DataTechCoreBasePar
 	            props.load(inputStream);
 	            if (isValidDataSourceConfig(props)) {
 	            	 properties = props ;
+	            	 properties.setProperty("app.datasource.driverClass", DataTechCoreInitDatasourceParams.getDbDriverClassName());
 	            	return  props;
 	            }
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}            
 			return  null;		
@@ -65,8 +66,10 @@ public class DataTechCoreLoadDataSourceProperties implements DataTechCoreBasePar
         	DataTechCoreInitDatasourceParams.setDbName(prop.getProperty("app.datasource.dbname"));
         	DataTechCoreInitDatasourceParams.setSSLUsage(Boolean.parseBoolean(prop.getProperty("app.datasource.useSSL")));
         	DataTechCoreInitDatasourceParams.initDbURL();
+        	DataTechCoreInitDatasourceParams.setLoadedParams(true);
         	return true;
         }
+		DataTechCoreInitDatasourceParams.setLoadedParams(false);
 		return false;
 	}
 
@@ -81,6 +84,6 @@ public class DataTechCoreLoadDataSourceProperties implements DataTechCoreBasePar
 	}
 	
 	
-	
+
 	
 }

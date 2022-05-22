@@ -6,7 +6,7 @@ import com.datatech.core.appcore.EliTechCoreObject;
 /**
  * @author a.houadef
  * @version 1.0
- * Is used to set static parameters for the app 
+ * Is used to set static parameters for the app and also to check datasource parameters 
  * @param DBType
  * @return
  */
@@ -18,7 +18,9 @@ public class DataTechCoreInitDatasourceParams implements EliTechCoreObject {
 	private static String dbURL;
 	private static  String dbDriverClassName ;
 	private static String dbType ;
-	public static boolean isSSLUsage ; 
+	private static boolean isSSLUsage ;
+	private static boolean isLoadedParams;
+	private static String dialect;
 		
 	
 	public static boolean checkDbType(String dbTypeParam) {
@@ -28,10 +30,22 @@ public class DataTechCoreInitDatasourceParams implements EliTechCoreObject {
 				dbTypeParam=dbTypeToLlwerCase;
 				setDbType(dbTypeParam);
 				switch (c) {
-					case postgresql 	: 	dbDriverClassName = "org.postgresql.Driver";
-					case sqlserver 		: 	dbDriverClassName="com.microsoft.sqlserver.jdbc.SQLServer";
-					case mysql 			:	dbDriverClassName="com.mysql.jdbc.Driver";
-					case oracle 		:	dbDriverClassName="oracle.jdbc.driver.OracleDriver";
+					case postgresql 	: 	{
+												setDbDriverClassName("org.postgresql.Driver");
+												setDialect("org.hibernate.dialect.PostgreSQLDialect");
+											}
+					case sqlserver 		: 	{
+												setDbDriverClassName("com.microsoft.sqlserver.jdbc.SQLServer");
+												setDialect("org.hibernate.dialect.SQLServerDialect");
+											}
+					case mysql 			:	{
+												setDbDriverClassName("com.mysql.jdbc.Driver");
+												setDialect("org.hibernate.dialect.MySQLDialect");
+											}
+					case oracle 		:	{
+												setDbDriverClassName("oracle.jdbc.driver.OracleDriver");
+												setDialect("org.hibernate.dialect.OracleDialect");
+											}
 				default:
 					dbDriverClassName = "org.postgresql.Driver";
 				}
@@ -143,10 +157,37 @@ public class DataTechCoreInitDatasourceParams implements EliTechCoreObject {
 	public static void setSSLUsage(boolean isSSLUsage) {
 		DataTechCoreInitDatasourceParams.isSSLUsage = isSSLUsage;
 	}
+
+
+	public static boolean isLoadedParams() {
+		return isLoadedParams;
+	}
+
+
+	public static void setLoadedParams(boolean isLoadedParams) {
+		DataTechCoreInitDatasourceParams.isLoadedParams = isLoadedParams;
+	}
+
+
+	public static String getDialect() {
+		return dialect;
+	}
+
+
+	public static void setDialect(String dialect) {
+		DataTechCoreInitDatasourceParams.dialect = dialect;
+	}
+
+
+	public static void setDbURL(String dbURL) {
+		DataTechCoreInitDatasourceParams.dbURL = dbURL;
+	}
+
+
+	public static void setDbDriverClassName(String dbDriverClassName) {
+		DataTechCoreInitDatasourceParams.dbDriverClassName = dbDriverClassName;
+	}
 	
 	
-	
-	
-	
-	
+		
 }

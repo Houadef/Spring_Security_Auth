@@ -11,11 +11,9 @@ import com.datatech.core.appcore.EliTechCoreObject;
  */
 public class DataTechCoreSessionFactory implements EliTechCoreObject{
 	
-	
 	public DataTechCoreSessionFactory() {
 			
-	}
+	}	
 	
 	
-
 }
