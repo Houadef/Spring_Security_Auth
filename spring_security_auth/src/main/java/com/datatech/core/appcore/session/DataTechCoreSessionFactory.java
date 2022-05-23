@@ -1,4 +1,4 @@
-package com.datatech.core.module.session;
+package com.datatech.core.appcore.session;
 
 import com.datatech.core.appcore.EliTechCoreObject;
 

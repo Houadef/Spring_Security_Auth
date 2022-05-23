@@ -1,4 +1,4 @@
-package com.datatech.core.module.Exception;
+package com.datatech.core.appcore.exception;
 
 import org.springframework.context.annotation.Configuration;
 
