@@ -1,4 +1,4 @@
-package com.datatech.core.controller;
+package com.datatech.core.appcore.controller;
 
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 

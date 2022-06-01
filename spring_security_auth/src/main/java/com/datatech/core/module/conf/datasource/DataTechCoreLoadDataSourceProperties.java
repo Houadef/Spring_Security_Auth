@@ -74,7 +74,7 @@ public class DataTechCoreLoadDataSourceProperties implements DataTechCoreBasePar
 	}
 
 
-	public static Properties getProperties() {
+	public Properties getProperties() {
 		return properties;
 	}
 

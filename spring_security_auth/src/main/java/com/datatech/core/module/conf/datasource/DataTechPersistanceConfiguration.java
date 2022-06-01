@@ -4,9 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.Metadata;
+import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Environment;
+import org.hibernate.service.ServiceRegistry;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import com.datatech.core.appcore.DataTechCoreBaseParameters;
@@ -25,13 +29,11 @@ public class DataTechPersistanceConfiguration implements DataTechCoreBaseParamet
     private static StandardServiceRegistry registry;
     private static SessionFactory sessionFactory;
 
-    @SuppressWarnings("static-access")
-	public static SessionFactory getSessionFactory(Object obj) {
+    @Bean
+	public synchronized SessionFactory buildSessionFactory() {
+    	
         if (sessionFactory == null) {
            try {
-              StandardServiceRegistryBuilder registryBuilder = 
-                    new StandardServiceRegistryBuilder();
-
               Map<String, Object> settings = new HashMap<>();
               settings.put(Environment.DRIVER, DataTechCoreInitDatasourceParams.getDbDriverClassName());
               settings.put(Environment.URL, DataTechCoreInitDatasourceParams.getDbURL());
@@ -62,22 +64,26 @@ public class DataTechPersistanceConfiguration implements DataTechCoreBaseParamet
               settings.put("hibernate.hikari.connectionTestQuery",DataTechCoreLoadDataSourceProperties.getInstance().getProperties().getProperty("app.datasource.connectionTestQuery"));
               
               
+              ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
+                      .applySettings(settings).build();
               
-              registryBuilder.applySettings(settings);
-
-              registry = registryBuilder.build();
-              
-//              Metadata metadata = sources.getMetadataBuilder().build();
-//              sessionFactory = metadata.getSessionFactoryBuilder().build();
+              MetadataSources metadataSources = new MetadataSources(serviceRegistry);
+              Metadata metadata = metadataSources.buildMetadata();
+              sessionFactory = metadata.getSessionFactoryBuilder().build();
+              return sessionFactory;
            } catch (Exception e) {
               if (registry != null) {
                  StandardServiceRegistryBuilder.destroy(registry);
               }
               e.printStackTrace();
+              return null;
            }
         }
         return sessionFactory;
      }
 
+	public static SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
  
 }
