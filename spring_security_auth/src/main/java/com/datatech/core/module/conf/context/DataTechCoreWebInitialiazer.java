@@ -18,7 +18,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 @Configuration
 public class DataTechCoreWebInitialiazer implements WebApplicationInitializer {
 
-	private AnnotationConfigWebApplicationContext dispatcherServletContext ;
+	private static AnnotationConfigWebApplicationContext  dispatcherServletContext ;
 	
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
@@ -28,17 +28,17 @@ public class DataTechCoreWebInitialiazer implements WebApplicationInitializer {
 		System.out.println("<----------- Initializing Web APP config -------->");
 		
 		// Create the 'root' Spring application context
-		this.dispatcherServletContext = new AnnotationConfigWebApplicationContext();
+		dispatcherServletContext = new AnnotationConfigWebApplicationContext();
 		
-		this.dispatcherServletContext.register(DataTechCoreWebMVCConfig.class);
+		dispatcherServletContext.register(DataTechCoreWebMVCConfig.class);
 		
-		this.dispatcherServletContext.setServletContext(servletContext);
-		this.dispatcherServletContext.refresh();
+		dispatcherServletContext.setServletContext(servletContext);
+		dispatcherServletContext.refresh();
 		
 		// Manage the lifecycle of the root application context
-		servletContext.addListener(new ContextLoaderListener(this.dispatcherServletContext));       
+		servletContext.addListener(new ContextLoaderListener(dispatcherServletContext));       
 		
-		DispatcherServlet dispatcherServlet = new DispatcherServlet(this.dispatcherServletContext);
+		DispatcherServlet dispatcherServlet = new DispatcherServlet(dispatcherServletContext);
 		
 		//Create Dispatcher Servlet with servlet context Object
 		ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcherServlet", dispatcherServlet);

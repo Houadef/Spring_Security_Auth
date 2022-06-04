@@ -3,7 +3,7 @@ package com.datatech.core.appcore.controller;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 //@ControllerAdvice
-public class EliTechCoreExceptionHandlercontroller extends ResponseEntityExceptionHandler {
+public class DataTechCoreExceptionHandlercontroller extends ResponseEntityExceptionHandler {
 	
 //	@ExceptionHandler(NoHandlerFoundException.class)
 //	

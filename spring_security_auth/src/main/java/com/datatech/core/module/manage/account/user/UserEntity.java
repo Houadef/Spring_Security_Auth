@@ -6,7 +6,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name="manage_account_user")
 public class UserEntity {
-
+	
+	
 	private int id ;
 	
 	private String user_id;

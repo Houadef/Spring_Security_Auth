@@ -11,7 +11,8 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 import com.datatech.core.appcore.DataTechCoreBaseParameters;
 
@@ -23,13 +24,23 @@ import com.datatech.core.appcore.DataTechCoreBaseParameters;
  * 
  */
 
-@Component
+@Configuration
+@ComponentScan("com.datatech.core")
 public class DataTechPersistanceConfiguration implements DataTechCoreBaseParameters{
    
     private static StandardServiceRegistry registry;
     private static SessionFactory sessionFactory;
 
-    @Bean
+    public DataTechPersistanceConfiguration() {
+    	buildSessionFactory();
+    }
+    
+    @Bean(name="sessionFactoryBuilder")
+    public DataTechPersistanceConfiguration getDataTechPersistanceConfiguration() {
+    	return new DataTechPersistanceConfiguration();
+    }
+    
+    
 	public synchronized SessionFactory buildSessionFactory() {
     	
         if (sessionFactory == null) {

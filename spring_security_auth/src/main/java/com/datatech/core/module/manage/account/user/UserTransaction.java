@@ -1,5 +1,17 @@
 package com.datatech.core.module.manage.account.user;
 
-public class UserTransaction {
+import com.datatech.core.module.manage.security.transaction.DataTechCoreTransaction;
+
+public class UserTransaction  {
+	
+	
+	
 
 }
+
+
+
+
+
+
+

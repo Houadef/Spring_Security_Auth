@@ -1,7 +1,7 @@
 package com.datatech.core.module.conf.datasource;
 
 import com.datatech.core.appcore.DataTechCoreUtils;
-import com.datatech.core.appcore.EliTechCoreObject;
+import com.datatech.core.appcore.DataTechCoreObject;
 
 /**
  * @author a.houadef
@@ -10,7 +10,7 @@ import com.datatech.core.appcore.EliTechCoreObject;
  * @param DBType
  * @return
  */
-public class DataTechCoreInitDatasourceParams implements EliTechCoreObject {
+public class DataTechCoreInitDatasourceParams implements DataTechCoreObject {
 	
 	private static String dbLocation ;
 	private static String dbPortNumber ;
