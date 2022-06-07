@@ -22,7 +22,7 @@ import com.datatech.core.module.conf.I18n.DataTechCoreI18nConf;
 
 @EnableWebMvc
 @Configuration	
-@ComponentScan(basePackages = "com.datatech.core.controller")
+@ComponentScan(basePackages = "com.datatech.core")
 public class DataTechCoreWebMVCConfig implements WebMvcConfigurer, DataTechCoreBaseParameters, DataTechCoreObjectName{
 	
 	

@@ -1,7 +1,5 @@
 package com.datatech.core.appcore.exception;
 
-import org.springframework.context.annotation.Configuration;
-
 import com.datatech.core.module.conf.DataTechCoreBaseParameters;
 
 /**
@@ -12,7 +10,6 @@ import com.datatech.core.module.conf.DataTechCoreBaseParameters;
  * @author TJanssen
  */
 
-@Configuration
 public class DataTechCoreAppException extends Exception implements DataTechCoreBaseParameters{
 	
 	

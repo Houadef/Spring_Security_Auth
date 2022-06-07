@@ -3,11 +3,9 @@ package com.datatech.core.appcore.session;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.stereotype.Component;
 
 import com.datatech.core.module.conf.datasource.DataTechPersistanceUtil;
 
-@Component
 public class DataTechDAOTransactionManager {
 
 	

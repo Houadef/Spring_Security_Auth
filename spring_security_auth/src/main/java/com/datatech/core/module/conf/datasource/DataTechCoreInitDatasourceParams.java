@@ -144,8 +144,7 @@ public class DataTechCoreInitDatasourceParams implements DataTechKernelObject {
 	 * @param isSSLUsage
 	 */
 	public static void initDbURL() {
-		dbURL="jdbc:"+dbType+"://"+dbLocation+":"+dbPortNumber+dbName+"?ssl="+isSSLUsage;		
-		
+		dbURL="jdbc:"+dbType+"://"+dbLocation+":"+dbPortNumber+"/"+dbName+"?ssl="+isSSLUsage;		
 	}
 
 
