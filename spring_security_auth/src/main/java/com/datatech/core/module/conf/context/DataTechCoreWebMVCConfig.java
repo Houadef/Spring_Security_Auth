@@ -16,8 +16,8 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
-import com.datatech.core.appcore.DataTechCoreBaseParameters;
 import com.datatech.core.appcore.DataTechCoreObjectName;
+import com.datatech.core.module.conf.DataTechCoreBaseParameters;
 import com.datatech.core.module.conf.I18n.DataTechCoreI18nConf;
 
 @EnableWebMvc
@@ -57,6 +57,7 @@ public class DataTechCoreWebMVCConfig implements WebMvcConfigurer, DataTechCoreB
 	@Bean
     @Description("Thymeleaf template resolver serving HTML 5")
     public SpringResourceTemplateResolver templateResolver() {
+		System.out.println("------------------ Thymileaf  config ---------------");
         var templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setPrefix(DEFAULT_TEMPLATE_RESOLVER);
         templateResolver.setCacheable(false);
@@ -69,6 +70,7 @@ public class DataTechCoreWebMVCConfig implements WebMvcConfigurer, DataTechCoreB
 	@Bean
     @Description("Thymeleaf template engine with Spring integration")
     public SpringTemplateEngine templateEngine() {
+		System.out.println("------------------ template Engine ---------------");
         var templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver());
         return templateEngine;
@@ -77,6 +79,7 @@ public class DataTechCoreWebMVCConfig implements WebMvcConfigurer, DataTechCoreB
 	@Bean
     @Description("Thymeleaf view resolver")
     public ViewResolver viewResolver() {
+		System.out.println("------------------ View Resolver Engine ---------------");
         var viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine(templateEngine());
         viewResolver.setCharacterEncoding(DEFAULT_ENCODING);
@@ -91,6 +94,7 @@ public class DataTechCoreWebMVCConfig implements WebMvcConfigurer, DataTechCoreB
      */
     @Bean("localResolver")
     public SessionLocaleResolver localResolver() {
+    	System.out.println("------------------ SESSION Local Resolver ---------------");
 //    	SessionLocaleResolver localResolver = new SessionLocaleResolver();
 //    	localResolver.setDefaultLocale(new Locale("en", "EN"));
 //    	return localResolver ;
@@ -102,6 +106,7 @@ public class DataTechCoreWebMVCConfig implements WebMvcConfigurer, DataTechCoreB
      */
     @Bean("messageSource")
     public MessageSource messageSource() {
+    	System.out.println("------------------ Message Source  ---------------");
 //        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
 //        messageSource.setBasenames(MESSAGE_SOURCE);
 //        messageSource.setDefaultEncoding(DEFAULT_ENCODING);
@@ -116,6 +121,7 @@ public class DataTechCoreWebMVCConfig implements WebMvcConfigurer, DataTechCoreB
     @Bean
     public LocaleResolver localeResolver() {
 //        return new CookieLocaleResolver();
+    	System.out.println("------------------ Local Resolver ---------------");
     	return this.dataTechCoreI18nConf.getLocaleResolver();
     }
     
@@ -124,6 +130,7 @@ public class DataTechCoreWebMVCConfig implements WebMvcConfigurer, DataTechCoreB
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+    	System.out.println("------------------ Interceptor    ---------------");
         registry.addInterceptor(this.dataTechCoreI18nConf.getInterceptorRegistery());
     }
     

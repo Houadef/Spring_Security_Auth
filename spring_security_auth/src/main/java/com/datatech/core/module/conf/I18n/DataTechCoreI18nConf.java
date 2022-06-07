@@ -7,7 +7,7 @@ import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
-import com.datatech.core.appcore.DataTechCoreBaseParameters;
+import com.datatech.core.module.conf.DataTechCoreBaseParameters;
 
 public class DataTechCoreI18nConf implements DataTechCoreBaseParameters{
 

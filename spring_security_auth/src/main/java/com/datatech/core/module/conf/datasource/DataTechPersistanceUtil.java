@@ -1,6 +1,7 @@
 package com.datatech.core.module.conf.datasource;
 
 import java.util.HashMap;
+
 import java.util.Map;
 
 import org.hibernate.SessionFactory;
@@ -11,10 +12,9 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import com.datatech.core.appcore.DataTechCoreBaseParameters;
+import com.datatech.core.module.conf.DataTechCoreBaseParameters;
 
 /**
  * 
@@ -25,26 +25,28 @@ import com.datatech.core.appcore.DataTechCoreBaseParameters;
  */
 
 @Configuration
-@ComponentScan("com.datatech.core")
-public class DataTechPersistanceConfiguration implements DataTechCoreBaseParameters{
+public class DataTechPersistanceUtil implements DataTechCoreBaseParameters{
    
     private static StandardServiceRegistry registry;
     private static SessionFactory sessionFactory;
 
-    public DataTechPersistanceConfiguration() {
+    public DataTechPersistanceUtil() {
     	buildSessionFactory();
     }
     
-    @Bean(name="sessionFactoryBuilder")
-    public DataTechPersistanceConfiguration getDataTechPersistanceConfiguration() {
-    	return new DataTechPersistanceConfiguration();
+
+    public DataTechPersistanceUtil getDataTechPersistanceConfiguration() {
+    	return new DataTechPersistanceUtil();
     }
     
     
-	public synchronized SessionFactory buildSessionFactory() {
-    	
+	
+   
+		@Bean(name = "sessionFactory")
+		public static synchronized SessionFactory buildSessionFactory() {    	
         if (sessionFactory == null) {
-           try {
+        	try {  	   		   
+        		System.out.println("Begin Persitance Configuration");
               Map<String, Object> settings = new HashMap<>();
               settings.put(Environment.DRIVER, DataTechCoreInitDatasourceParams.getDbDriverClassName());
               settings.put(Environment.URL, DataTechCoreInitDatasourceParams.getDbURL());
@@ -74,13 +76,15 @@ public class DataTechPersistanceConfiguration implements DataTechCoreBaseParamet
               // Connection TestQuerry
               settings.put("hibernate.hikari.connectionTestQuery",DataTechCoreLoadDataSourceProperties.getInstance().getProperties().getProperty("app.datasource.connectionTestQuery"));
               
-              
-              ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-                      .applySettings(settings).build();
-              
+            
+              ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(settings).build();
+             
               MetadataSources metadataSources = new MetadataSources(serviceRegistry);
+              
               Metadata metadata = metadataSources.buildMetadata();
+              
               sessionFactory = metadata.getSessionFactoryBuilder().build();
+              
               return sessionFactory;
            } catch (Exception e) {
               if (registry != null) {
@@ -96,5 +100,6 @@ public class DataTechPersistanceConfiguration implements DataTechCoreBaseParamet
 	public static SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
+	
  
 }

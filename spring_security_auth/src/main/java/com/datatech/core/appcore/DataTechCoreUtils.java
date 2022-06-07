@@ -1,6 +1,6 @@
 package com.datatech.core.appcore;
 
-public class DataTechCoreUtils implements DataTechCoreObject {
+public class DataTechCoreUtils implements DataTechKernelObject {
 
 	public static boolean isEmptyOrNullOrBlanc(String param) {
 		if (param.isEmpty()) 

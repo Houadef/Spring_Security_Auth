@@ -1,4 +1,4 @@
-package com.datatech.core.appcore;
+package com.datatech.core.module.conf;
 
 import java.util.Locale;
 

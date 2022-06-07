@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Properties;
 
-import com.datatech.core.appcore.DataTechCoreBaseParameters;
+import com.datatech.core.module.conf.DataTechCoreBaseParameters;
 
 
 public class DataTechCoreLoadDataSourceProperties implements DataTechCoreBaseParameters{

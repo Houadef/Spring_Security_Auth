@@ -25,7 +25,7 @@ public class DataTechCoreWebInitialiazer implements WebApplicationInitializer {
 		
 		Locale.setDefault(Locale.US);
 		
-		System.out.println("<----------- Initializing Web APP config -------->");
+		System.out.println("<----------- START Initializing Web APP config -------->");
 		
 		// Create the 'root' Spring application context
 		dispatcherServletContext = new AnnotationConfigWebApplicationContext();
@@ -52,10 +52,13 @@ public class DataTechCoreWebInitialiazer implements WebApplicationInitializer {
         fr.setInitParameter("encoding", "UTF-8");
         fr.setInitParameter("forceEncoding", "true");
         fr.addMappingForUrlPatterns(null, true, "/*");
+                
+    	System.out.println("<----------- END Initializing Web APP config -------->");
 	}
 
 	
 	public AnnotationConfigWebApplicationContext getDispatcherServletContext() {
+		System.out.println("<----------- Get Context -------->");
 		return dispatcherServletContext;
 	}
 	

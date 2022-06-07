@@ -1,6 +1,6 @@
 package com.datatech.core.appcore;
 
-public class DataTechCodeBase implements DataTechCoreObject {
+public class DataTechCodeBase implements DataTechKernelObject {
 
 	
 	public int getHttpStatusCode(Object httpStatus) {

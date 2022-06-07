@@ -2,7 +2,7 @@ package com.datatech.core.appcore.exception;
 
 import org.springframework.context.annotation.Configuration;
 
-import com.datatech.core.appcore.DataTechCoreBaseParameters;
+import com.datatech.core.module.conf.DataTechCoreBaseParameters;
 
 /**
  * The DataSourceBadParameterException wraps all checked standard Java exception and enriches them with 
