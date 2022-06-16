@@ -2,26 +2,25 @@ package com.datatech.core.appcore.session;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Environment;
 
+import com.datatech.core.appcore.DataTechCodeBase;
 import com.datatech.core.module.conf.datasource.DataTechPersistanceUtil;
 
-public class DataTechDAOTransactionManager {
-
-	
-	private SessionFactory sessionFactory = DataTechPersistanceUtil.buildSessionFactory();
-	
+public class DataTechDAOTransactionManager extends DataTechCodeBase {
+		
 	private Session session;
 	
 	public boolean save(Object obj) {
 		try {
-			System.out.println("Open Session");
-			session = this.sessionFactory.openSession();
-			System.out.println("Begin Transaction");
+			System.out.println(DataTechPersistanceUtil.buildConfiguration().getProperties().getProperty(Environment.URL));
+			log.trace("Opening session");			
+			session = DataTechPersistanceUtil.getSessionFactory().openSession();
+			log.trace("Begin Transaction");
 			this.session.beginTransaction();
-			System.out.println("Persist Object Save");
+			log.trace("Persist Object Save : "+obj.getClass().toString());
 			this.session.persist(obj);
-			System.out.println("Commit Object");
+			log.info("Starting Commiting Object"+obj.getClass().toString() );
 			session.getTransaction().commit();
 			
 		}catch (HibernateException e) {
@@ -33,4 +32,16 @@ public class DataTechDAOTransactionManager {
 		}
 		return true;
 	}
+
+	public Session getSession() {
+		return session;
+	}
+
+
+	public void setSession(Session session) {
+		this.session = session;
+	}
+	
+	
+	
 }

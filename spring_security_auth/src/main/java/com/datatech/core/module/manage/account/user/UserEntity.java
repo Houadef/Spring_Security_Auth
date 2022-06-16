@@ -1,36 +1,52 @@
 package com.datatech.core.module.manage.account.user;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import com.datatech.core.DataTechCoreEntity;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table(name="manage_account_user")
-public class UserEntity {
+@Table(name="frm_manage_account_user", schema = "public")
+public class UserEntity extends DataTechCoreEntity {	
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name="user_seq", sequenceName="seq_manage_account_user_seq", initialValue = 10, allocationSize =100)
+	@NotNull
+	protected Long id ;
 	
-	private int id ;
-	
+	@Column(name="user_id", length=128, nullable = false, unique = true)
 	private String user_id;
 	
+	@Column(name="user_first_name", length=128, nullable = false, unique = false )
+	@NotNull
 	private String user_first_name ;
 	
+	@Column(name="user_last_name", length=128, nullable = false, unique = false )
+	@NotNull
 	private String user_last_name ;
 	
+	@Column(name="user_username", length=128, nullable = false, unique = true )
+	@NotNull
+	private String user_username ;
+	
+	@Column(name="user_password", length=128, nullable = false, unique = false )
 	private String user_password ;
 	
+	@Column(name="user_phone", length=128, unique = false )
 	private String user_phone ;
 	
+	@Column(name="user_photo_url", length=128, unique = false)
 	private String user_photo_url ;
 	
+	@Column(name="user_email", length=256, nullable = false, unique = true )
 	private String user_email ;
-
-	public int getId() {
-		return id;
-	}
-
-	public String getUser_id() {
-		return user_id;
-	}
 
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
@@ -82,6 +98,14 @@ public class UserEntity {
 
 	public void setUser_email(String user_email) {
 		this.user_email = user_email;
+	}
+
+	public String getUser_username() {
+		return user_username;
+	}
+
+	public void setUser_username(String user_username) {
+		this.user_username = user_username;
 	}
 	
 	

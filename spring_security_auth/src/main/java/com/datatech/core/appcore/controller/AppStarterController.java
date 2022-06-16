@@ -4,6 +4,8 @@ package com.datatech.core.appcore.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.datatech.core.module.manage.account.user.UserTransaction;
+
 
 
 /**
@@ -25,11 +27,10 @@ public class AppStarterController {
 	//** Startup Controller for lunching Login form */
 	@RequestMapping(value="/")
 	public String getHomePage() {
-				
-		System.out.println("##########################################  Test Transaction");
 		
-//		UserTransaction userTranac = new UserTransaction();
-//		userTranac.createUser();
+		UserTransaction userTranac = new UserTransaction();
+		
+		userTranac.createUser();
 		return "redirect:/manage/account/login";
 		//return "home";
 	}
@@ -37,7 +38,7 @@ public class AppStarterController {
 	//** Login form controller. */
 	@RequestMapping("/manage/account/login")
 	public String getLoginPage() {
-		System.out.println("##########################################  Test login Page");
+		
 		return "modules/manage/account/manage.account.login.form";
 	}
 	
